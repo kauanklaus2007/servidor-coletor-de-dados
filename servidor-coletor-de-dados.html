@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa de Uso</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #0f172a;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .box {
+            background: #020617;
+            padding: 30px;
+            border-radius: 10px;
+            width: 340px;
+            text-align: center;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            background: #2563eb;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .stats {
+            margin-top: 20px;
+            background: #020617;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: left;
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Pesquisa de Uso 📊</h2>
+    <p>Site de pesquisa local</p>
+
+    <button onclick="participar()">Participar</button>
+
+    <div class="stats" id="stats"></div>
+</div>
+
+<script>
+let total = localStorage.getItem("total") || 0;
+total++;
+localStorage.setItem("total", total);
+
+if (!localStorage.getItem("aparelho")) {
+    localStorage.setItem("aparelho", "ok");
+    let unicos = localStorage.getItem("unicos") || 0;
+    unicos++;
+    localStorage.setItem("unicos", unicos);
+}
+
+function participar() {
+    mostrar();
+}
+
+function mostrar() {
+    document.getElementById("stats").innerText =
+        "Total de acessos: " + localStorage.getItem("total") +
+        "\nAparelhos únicos: " + localStorage.getItem("unicos") +
+        "\n\nNavegador: " + navigator.userAgent +
+        "\nPlataforma: " + navigator.platform +
+        "\nResolução: " + screen.width + "x" + screen.height +
+        "\nHorário: " + new Date().toLocaleString();
+}
+
+mostrar();
+</script>
+
+</body>
+</html>
